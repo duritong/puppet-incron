@@ -1,13 +1,9 @@
 define incron::watch (
   $ensure     = present,
-  $file       = false,
-  $event      = false,
-  $command    = false,
+  $file,
+  $event,
+  $command,
 ) {
-
-  if ( (!$file) or (!$event) or (!$command) ) {
-    fail('Missing argument for incron::watch')
-  }
 
   file{ "/etc/incron.d/${name}":
     ensure  => $ensure,
