@@ -4,6 +4,7 @@ define incron::watch (
   $event,
   $command,
 ) {
+  include incron
 
   file{ "/etc/incron.d/${name}":
     ensure  => $ensure,
