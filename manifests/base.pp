@@ -1,10 +1,11 @@
 class incron::base {
-  package{'incron':
+  include incron::params
+  package { $incron::params::package:
     ensure => installed,
   }
-  service{'incrond':
+  service { $incron::params::service:
     ensure => running,
     enable => true,
-    require => Package['incron'],
+    require => Package[$incron::params::package],
   }
 }

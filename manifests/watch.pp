@@ -6,10 +6,10 @@ define incron::watch (
 ) {
   include incron
 
-  file{ "/etc/incron.d/${name}":
+  file{ "${incron::params::config_path}/${name}":
     ensure  => $ensure,
     content => "${file} ${event} ${command}",
-    require => Package['incron'],
-    notify  => Service['incrond'],
+    require => Package[$incron::params::package],
+    notify  => Service[$incron::params::service],
   }
 }
