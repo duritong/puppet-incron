@@ -1,3 +1,7 @@
+# manage incron
 class incron {
-  include incron::base
+  case $::osfamily {
+    debian: { include incron::debian }
+    default: { include incron::base }
+  }
 }
